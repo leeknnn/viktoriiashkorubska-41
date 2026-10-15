@@ -125,7 +125,7 @@ print(result.statistic, result.pvalue)
 
 ci = result.confidence_interval(confidence_level=0.95)
 print(ci.low, ci.high)
-# приблизно (0.962, 0.998) -- довірчий інтервал для істинного r
+# приблизно (0.962, 0.998): довірчий інтервал для істинного r
 ```
 
 `result.pvalue` — це p-value того самого сорту, що в Лекції 14: H0 тут
@@ -174,8 +174,8 @@ y = x ** 2                  # ідеальна, повністю детермі�
 r = pearsonr(x, y)
 rho = spearmanr(x, y)
 print(r.statistic, rho.statistic)
-# r.statistic ≈ 0.0    -- Пірсон "не бачить" зв'язку взагалі
-# rho.statistic ≈ 0.0  -- і Спірмен теж (детально нижче -- чому)
+# r.statistic ≈ 0.0: Пірсон "не бачить" зв'язку взагалі
+# rho.statistic ≈ 0.0: і Спірмен теж (детально нижче: чому)
 ```
 
 `y` тут визначається `x` абсолютно точно (це не шум, а формула!), але
@@ -196,11 +196,11 @@ print(r.statistic, rho.statistic)
 x = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
 y = np.array([2, 4, 5, 8, 9, 12, 13, 16, 18, 20])
 
-print(pearsonr(x, y).statistic)   # ≈ 0.997 -- майже ідеальний лінійний зв'язок
+print(pearsonr(x, y).statistic)   # ≈ 0.997: майже ідеальний лінійний зв'язок
 
 x_out = np.append(x, 11)
 y_out = np.append(y, 200)          # один аномальний випадок
-print(pearsonr(x_out, y_out).statistic)   # ≈ 0.585 -- одне значення обвалило r
+print(pearsonr(x_out, y_out).statistic)   # ≈ 0.585: одне значення обвалило r
 ```
 
 Одне-єдине аномальне спостереження зі 11 знизило `r` з 0.997 до 0.585
@@ -217,12 +217,12 @@ print(pearsonr(x_out, y_out).statistic)   # ≈ 0.585 -- одне значенн
 ```python
 np.random.seed(21)
 n = 30
-temperature = np.random.uniform(15, 35, n)     # °C -- справжня спільна причина
+temperature = np.random.uniform(15, 35, n)     # °C: справжня спільна причина
 ice_cream = 20 + 3.5 * temperature + np.random.normal(0, 15, n)
 drownings = 1 + 0.35 * temperature + np.random.normal(0, 2, n)
 drownings = np.clip(drownings, 0, None)
 
-print(pearsonr(ice_cream, drownings).statistic)    # ≈ 0.62, p < 0.001 -- статистично значущо!
+print(pearsonr(ice_cream, drownings).statistic)    # ≈ 0.62, p < 0.001: статистично значущо!
 print(pearsonr(temperature, ice_cream).statistic)   # ≈ 0.81
 print(pearsonr(temperature, drownings).statistic)   # ≈ 0.76
 ```
@@ -293,8 +293,8 @@ satisfaction = 100 / (1 + wait_minutes)     # монотонно спадає, �
 r = pearsonr(wait_minutes, satisfaction)
 rho = spearmanr(wait_minutes, satisfaction)
 print(r.statistic, rho.statistic)
-# r.statistic   ≈ -0.71  -- Пірсон недооцінює: крива не пряма лінія
-# rho.statistic ≈ -1.00  -- Спірмен бачить ідеальну монотонність
+# r.statistic   ≈ -0.71: Пірсон недооцінює: крива не пряма лінія
+# rho.statistic ≈ -1.00: Спірмен бачить ідеальну монотонність
 ```
 
 Задоволеність клієнта спадає з часом очікування за кривою з "насиченням"
@@ -478,7 +478,7 @@ print(result.rvalue, result.rvalue ** 2, result.pvalue)
 # rvalue ≈ 0.991, rvalue² ≈ 0.982, pvalue ≈ 2.7e-08
 
 print(result.stderr, result.intercept_stderr)
-# стандартні похибки оцінок нахилу й перетину -- ширина невизначеності кожного коефіцієнта
+# стандартні похибки оцінок нахилу й перетину: ширина невизначеності кожного коефіцієнта
 ```
 
 Рівняння регресії для цього прикладу: `бал ≈ 48.32 + 5.61 · години`.
@@ -509,7 +509,7 @@ ss_res = np.sum((scores - predicted) ** 2)
 ss_tot = np.sum((scores - scores.mean()) ** 2)
 r_squared = 1 - ss_res / ss_tot
 print(r_squared)          # ≈ 0.982
-print(result.rvalue ** 2)  # ≈ 0.982 -- те саме число
+print(result.rvalue ** 2)  # ≈ 0.982: те саме число
 ```
 
 **Чому `R² = r²` саме для простої регресії.** Це не збіг, а математичний
@@ -552,7 +552,7 @@ x = np.arange(1, 21)
 y = 5 + 2 * x + 0.35 * x ** 2 + np.random.normal(0, 8, size=len(x))
 
 result_bad = linregress(x, y)
-print(result_bad.rvalue ** 2)   # R² ≈ 0.923 -- виглядає майже відмінно!
+print(result_bad.rvalue ** 2)   # R² ≈ 0.923: виглядає майже відмінно!
 
 predicted = result_bad.intercept + result_bad.slope * x
 residuals = y - predicted

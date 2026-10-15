@@ -6,8 +6,8 @@
 узгодженості, чи розподіл однієї категоріальної змінної відповідає
 заявленій пропорції. Обидва тести застосовуються не до готового
 демонстраційного набору, а до даних, які студент сам генерує за
-формулою свого варіанта, — тож і результат (пов'язані змінні чи ні)
-для кожного варіанта свій, а не наперед відомий з прикладу.*
+формулою свого варіанта, — тож і таблиця спряженості, і значення χ²
+для кожного варіанта свої, а не наперед відомі з прикладу.*
 
 ## Варіанти
 
@@ -51,7 +51,7 @@ p-value дійсно підтверджує очікування, а не про
 import numpy as np
 import pandas as pd
 
-np.random.seed(42)
+np.random.seed(<номер вашого варіанта>)
 base_temp = ...     # середньорічна температура вашого варіанта
 amplitude = ...     # сезонна амплітуда вашого варіанта
 city = "..."
@@ -69,7 +69,7 @@ rows = []
 for year in [2021, 2022, 2023, 2024]:
     for month in range(1, 13):
         seasonal = amplitude * np.cos((month - 7) / 12 * 2 * np.pi)
-        noise = np.random.normal(0, 1.0)
+        noise = np.random.normal(0, 3.0)
         temp = round(base_temp + seasonal + noise, 1)
         diff = temp - base_temp
         if diff < -3:
@@ -94,6 +94,7 @@ climate = pd.DataFrame(rows)   # 48 рядків, 4 роки x 12 місяців
 напій і час дня відвідування.
 
 ```python
+import numpy as np
 import pandas as pd
 from scipy.stats import chi2_contingency, chisquare
 

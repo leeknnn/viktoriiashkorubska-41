@@ -64,7 +64,7 @@ shuffled = rng.permutation(visitors)
 
 print(np.isclose(visitors.mean(), shuffled.mean()))   # True
 print(np.isclose(visitors.std(), shuffled.std()))      # True
-print(np.array_equal(np.sort(visitors), np.sort(shuffled)))  # True -- ті самі числа
+print(np.array_equal(np.sort(visitors), np.sort(shuffled)))  # True: ті самі числа
 ```
 
 Середнє, дисперсія, навіть повний набір значень — ідентичні до й після
@@ -550,8 +550,8 @@ p-value нахилу, порахований `linregress` на **згладже�
 ```python
 deseason = ts - seasonal_hat                     # ряд без сезонної складової
 honest = linregress(np.arange(len(ts)), deseason.values)
-print(f"{fit.stderr:.3f} {fit.pvalue:.1e}")      # 0.045 1.4e-71 -- на trend_hat, оманливо
-print(f"{honest.stderr:.3f} {honest.pvalue:.1e}")  # 0.185 4.0e-41 -- чесна оцінка
+print(f"{fit.stderr:.3f} {fit.pvalue:.1e}")      # 0.045 1.4e-71: на trend_hat, оманливо
+print(f"{honest.stderr:.3f} {honest.pvalue:.1e}")  # 0.185 4.0e-41: чесна оцінка
 ```
 
 Стандартна похибка нахилу на `trend_hat` у чотири рази менша за чесну.
@@ -606,8 +606,8 @@ log R`, і після цього адитивна модель знову під
   результаті систематичне запізнення відносно оригіналу.
 - `statsmodels.tsa.seasonal.seasonal_decompose` формалізує розділення
   на тренд/сезонність/залишок; на синтетичному прикладі з наперед
-  відомими компонентами перевірено, що метод дійсно відновлює їх, а
-  не довільні числа — той самий принцип перевірки, що й у Лекції 21.
+  відомими компонентами видно, що метод дійсно відновлює їх, а
+  не довільні числа; той самий принцип перевірки, що й у Лекції 21.
 - Прогноз на кілька кроків — оглядово: продовження тренду через
   `linregress` (Лекція 17) плюс типовий сезонний ефект, або наївні
   правила (останнє значення, той самий період минулого року) як

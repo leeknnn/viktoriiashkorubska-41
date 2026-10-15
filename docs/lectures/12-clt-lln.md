@@ -105,7 +105,7 @@ n_repeats = 20_000
 
 fig, axes = plt.subplots(1, 4, figsize=(16, 3.2), sharey=False)
 for ax, n in zip(axes, [1, 5, 30, 200]):
-    # n_repeats незалежних вибірок розміру n, середнє кожної -- один x̄
+    # n_repeats незалежних вибірок розміру n, середнє кожної: один x̄
     sample_means = rng.exponential(scale=1 / lam, size=(n_repeats, n)).mean(axis=1)
     ax.hist(sample_means, bins=50, density=True, alpha=0.75)
     ax.set_title(f"n = {n}\nstd(x̄) = {sample_means.std():.3f}")
